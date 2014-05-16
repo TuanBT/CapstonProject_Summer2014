@@ -4,4 +4,3 @@ CapstonProject_Summer2014
 Bùi Tiến Tuân
 Trần Lê Tuấn
 Lê Minh Bảo
--------------------------
