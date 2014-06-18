@@ -19,5 +19,8 @@ namespace CocBookSite.Models
         public int MusicId { get; set; }
         public Nullable<int> Score { get; set; }
         public Nullable<System.DateTime> RateDate { get; set; }
+        public Nullable<bool> Active { get; set; }
+    
+        public virtual Music Music { get; set; }
     }
 }

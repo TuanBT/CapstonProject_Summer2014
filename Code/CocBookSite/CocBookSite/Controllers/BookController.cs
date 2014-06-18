@@ -25,15 +25,15 @@ namespace CocBookSite.Controllers
         {
             using (var dbContext = new CocBookEntities())
             {
-                var book = (from c in dbContext.V_Book
-                            where c.Active == true && c.BookID == id
-                            select c).SingleOrDefault();
-                if (book == null)
+                var music = (from m in dbContext.V_Music
+                            where m.Active == true && m.MusicId == id
+                            select m).FirstOrDefault();
+                if (music == null)
                 {
                     ViewBag.Message = "Đã có lỗi xảy ra trong quá trình xử lý thông tin. Xin bạn thử lại sau";
                     return View("Error.cshtml");
                 }
-                ViewBag.Title = book.Name;
+                ViewBag.Title = music.Name;
                 string username = getUser();
                 bool blnRate = true;
                 string strRateMess = "Hãy cho điểm sách";
@@ -56,8 +56,45 @@ namespace CocBookSite.Controllers
                 }
                 ViewBag.Rate = blnRate;
                 ViewBag.RateMess = strRateMess;
-                return View(book);
+                return View(music);
             }
+
+
+            //using (var dbContext = new CocBookEntities())
+            //{
+            //    var book = (from c in dbContext.V_Book
+            //                where c.Active == true && c.BookID == id
+            //                select c).SingleOrDefault();
+            //    if (book == null)
+            //    {
+            //        ViewBag.Message = "Đã có lỗi xảy ra trong quá trình xử lý thông tin. Xin bạn thử lại sau";
+            //        return View("Error.cshtml");
+            //    }
+            //    ViewBag.Title = book.Name;
+            //    string username = getUser();
+            //    bool blnRate = true;
+            //    string strRateMess = "Hãy cho điểm sách";
+            //    if (username.Equals("guest"))
+            //    {
+            //        blnRate = false;
+            //        strRateMess = "Đăng nhập để cho điểm sách";
+            //    }
+            //    else
+            //    {
+
+            //        var rated = (from c in dbContext.Ratings
+            //                     where c.BookID == id && c.Username == username
+            //                     select c).SingleOrDefault();
+            //        if (rated != null)
+            //        {
+            //            blnRate = false;
+            //            strRateMess = "Bạn đã chấm " + rated.Score + " điểm";
+            //        }
+            //    }
+            //    ViewBag.Rate = blnRate;
+            //    ViewBag.RateMess = strRateMess;
+            //    return View(book);
+            //}
 
         }
         #endregion

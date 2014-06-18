@@ -12,19 +12,9 @@ namespace CocBookSite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Music
+    public partial class V_Music
     {
-        public Music()
-        {
-            this.Comments = new HashSet<Comment>();
-            this.MusicRatings = new HashSet<MusicRating>();
-            this.OrderDetails = new HashSet<OrderDetail>();
-        }
-    
         public int MusicId { get; set; }
-        public int SingerId { get; set; }
-        public int AlbumId { get; set; }
-        public int AuthorId { get; set; }
         public string Name { get; set; }
         public string Info { get; set; }
         public System.DateTime PublishTime { get; set; }
@@ -35,15 +25,22 @@ namespace CocBookSite.Models
         public string Quality { get; set; }
         public Nullable<int> ViewNumber { get; set; }
         public string Link { get; set; }
-        public Nullable<int> CategoryId { get; set; }
         public Nullable<bool> Active { get; set; }
-    
-        public virtual Album Album { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
-        public virtual MusicAuthor MusicAuthor { get; set; }
-        public virtual MusicCategory MusicCategory { get; set; }
-        public virtual Singer Singer { get; set; }
-        public virtual ICollection<MusicRating> MusicRatings { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public string Description { get; set; }
+        public string MusicCategoryName { get; set; }
+        public string SingerName { get; set; }
+        public int Age { get; set; }
+        public string Country { get; set; }
+        public string Company { get; set; }
+        public string SingerDescription { get; set; }
+        public Nullable<bool> SingerActive { get; set; }
+        public bool MusicCategoryActive { get; set; }
+        public bool IsActive { get; set; }
+        public string AlbumName { get; set; }
+        public string Image { get; set; }
+        public string AlbumDescription { get; set; }
+        public Nullable<System.DateTime> AlbumPublishTime { get; set; }
+        public Nullable<bool> AlbumActive { get; set; }
+        public string MusicAuthorsName { get; set; }
     }
 }

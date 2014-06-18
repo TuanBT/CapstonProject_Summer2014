@@ -19,6 +19,7 @@ namespace CocBookSite.Models
         public Nullable<int> BookID { get; set; }
         public Nullable<double> Score { get; set; }
         public Nullable<System.DateTime> RateDate { get; set; }
+        public Nullable<bool> Active { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual Book Book { get; set; }

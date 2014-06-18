@@ -12,23 +12,15 @@ namespace CocBookSite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Singer
+    public partial class Comment
     {
-        public Singer()
-        {
-            this.Albums = new HashSet<Album>();
-            this.Musics = new HashSet<Music>();
-        }
-    
-        public int SingerId { get; set; }
-        public string Name { get; set; }
-        public int Age { get; set; }
-        public string Country { get; set; }
-        public string Company { get; set; }
-        public string Description { get; set; }
+        public int CommentId { get; set; }
+        public int MusicId { get; set; }
+        public int UserId { get; set; }
+        public string CmContent { get; set; }
+        public Nullable<System.DateTime> CmDate { get; set; }
         public Nullable<bool> Active { get; set; }
     
-        public virtual ICollection<Album> Albums { get; set; }
-        public virtual ICollection<Music> Musics { get; set; }
+        public virtual Music Music { get; set; }
     }
 }

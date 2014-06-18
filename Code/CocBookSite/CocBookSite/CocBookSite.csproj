@@ -112,6 +112,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CocBookModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Comment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ContraintValue.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -135,6 +138,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MusicAuthor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MusicCategory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MusicRating.cs">
@@ -161,7 +167,13 @@
     <Compile Include="Models\Singer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\V_Book.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_Music.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -190,6 +202,7 @@
     <Content Include="Content\css\fancybox\jquery.fancybox.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\font\fontawesome-webfont.svg" />
+    <Content Include="Content\css\audio.css" />
     <Content Include="Content\css\jquery.toastmessage.css" />
     <Content Include="Content\css\jrating\icons\bg_jRatingInfos.png" />
     <Content Include="Content\css\jrating\icons\small.png" />
@@ -200,6 +213,7 @@
     <Content Include="Content\css\light-accord\css\liteaccordion.css" />
     <Content Include="Content\css\navbar-override-2.css" />
     <Content Include="Content\css\navbar-override.css" />
+    <Content Include="Content\css\sample.css" />
     <Content Include="Content\img-demo\1.jpg" />
     <Content Include="Content\img-demo\2.jpg" />
     <Content Include="Content\img-demo\3.jpg" />
@@ -213,6 +227,7 @@
     <Content Include="Content\img\facebook-new.png" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Content\img\Music.png" />
     <Content Include="Content\img\naturally-green_logo.png" />
     <Content Include="Content\img\navigation.png" />
     <Content Include="Content\img\ps_neutral.png" />
@@ -250,8 +265,14 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\audio.min.js" />
+    <Content Include="Scripts\audiojs.swf" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\build-config.js" />
+    <Content Include="Scripts\ckeditor.js" />
+    <Content Include="Scripts\config.js" />
+    <Content Include="Scripts\contents.css" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -266,10 +287,233 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jRating.jquery.js" />
+    <Content Include="Scripts\lang\af.js" />
+    <Content Include="Scripts\lang\ar.js" />
+    <Content Include="Scripts\lang\bg.js" />
+    <Content Include="Scripts\lang\bn.js" />
+    <Content Include="Scripts\lang\bs.js" />
+    <Content Include="Scripts\lang\ca.js" />
+    <Content Include="Scripts\lang\cs.js" />
+    <Content Include="Scripts\lang\cy.js" />
+    <Content Include="Scripts\lang\da.js" />
+    <Content Include="Scripts\lang\de.js" />
+    <Content Include="Scripts\lang\el.js" />
+    <Content Include="Scripts\lang\en-au.js" />
+    <Content Include="Scripts\lang\en-ca.js" />
+    <Content Include="Scripts\lang\en-gb.js" />
+    <Content Include="Scripts\lang\en.js" />
+    <Content Include="Scripts\lang\eo.js" />
+    <Content Include="Scripts\lang\es.js" />
+    <Content Include="Scripts\lang\et.js" />
+    <Content Include="Scripts\lang\eu.js" />
+    <Content Include="Scripts\lang\fa.js" />
+    <Content Include="Scripts\lang\fi.js" />
+    <Content Include="Scripts\lang\fo.js" />
+    <Content Include="Scripts\lang\fr-ca.js" />
+    <Content Include="Scripts\lang\fr.js" />
+    <Content Include="Scripts\lang\gl.js" />
+    <Content Include="Scripts\lang\gu.js" />
+    <Content Include="Scripts\lang\he.js" />
+    <Content Include="Scripts\lang\hi.js" />
+    <Content Include="Scripts\lang\hr.js" />
+    <Content Include="Scripts\lang\hu.js" />
+    <Content Include="Scripts\lang\id.js" />
+    <Content Include="Scripts\lang\is.js" />
+    <Content Include="Scripts\lang\it.js" />
+    <Content Include="Scripts\lang\ja.js" />
+    <Content Include="Scripts\lang\ka.js" />
+    <Content Include="Scripts\lang\km.js" />
+    <Content Include="Scripts\lang\ko.js" />
+    <Content Include="Scripts\lang\ku.js" />
+    <Content Include="Scripts\lang\lt.js" />
+    <Content Include="Scripts\lang\lv.js" />
+    <Content Include="Scripts\lang\mk.js" />
+    <Content Include="Scripts\lang\mn.js" />
+    <Content Include="Scripts\lang\ms.js" />
+    <Content Include="Scripts\lang\nb.js" />
+    <Content Include="Scripts\lang\nl.js" />
+    <Content Include="Scripts\lang\no.js" />
+    <Content Include="Scripts\lang\pl.js" />
+    <Content Include="Scripts\lang\pt-br.js" />
+    <Content Include="Scripts\lang\pt.js" />
+    <Content Include="Scripts\lang\ro.js" />
+    <Content Include="Scripts\lang\ru.js" />
+    <Content Include="Scripts\lang\si.js" />
+    <Content Include="Scripts\lang\sk.js" />
+    <Content Include="Scripts\lang\sl.js" />
+    <Content Include="Scripts\lang\sq.js" />
+    <Content Include="Scripts\lang\sr-latn.js" />
+    <Content Include="Scripts\lang\sr.js" />
+    <Content Include="Scripts\lang\sv.js" />
+    <Content Include="Scripts\lang\th.js" />
+    <Content Include="Scripts\lang\tr.js" />
+    <Content Include="Scripts\lang\tt.js" />
+    <Content Include="Scripts\lang\ug.js" />
+    <Content Include="Scripts\lang\uk.js" />
+    <Content Include="Scripts\lang\vi.js" />
+    <Content Include="Scripts\lang\zh-cn.js" />
+    <Content Include="Scripts\lang\zh.js" />
     <Content Include="Scripts\liteaccordion.jquery.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Scripts\player-graphics.gif" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\ar.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\bg.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\ca.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\cs.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\cy.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\da.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\de.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\el.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\en-gb.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\en.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\eo.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\es.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\et.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\fa.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\fi.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\fr-ca.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\fr.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\gl.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\gu.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\he.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\hi.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\hr.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\hu.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\id.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\it.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\ja.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\km.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\ko.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\ku.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\lt.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\lv.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\mk.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\mn.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\nb.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\nl.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\no.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\pl.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\pt-br.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\pt.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\ro.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\ru.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\si.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\sk.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\sl.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\sq.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\sr-latn.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\sr.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\sv.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\th.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\tr.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\tt.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\ug.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\uk.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\vi.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\zh-cn.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\zh.js" />
+    <Content Include="Scripts\plugins\a11yhelp\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Scripts\plugins\about\dialogs\about.js" />
+    <Content Include="Scripts\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="Scripts\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Scripts\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Scripts\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Scripts\plugins\icons.png" />
+    <Content Include="Scripts\plugins\icons_hidpi.png" />
+    <Content Include="Scripts\plugins\image\dialogs\image.js" />
+    <Content Include="Scripts\plugins\image\images\noimage.png" />
+    <Content Include="Scripts\plugins\link\dialogs\anchor.js" />
+    <Content Include="Scripts\plugins\link\dialogs\link.js" />
+    <Content Include="Scripts\plugins\link\images\anchor.png" />
+    <Content Include="Scripts\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="Scripts\plugins\magicline\images\hidpi\icon.png" />
+    <Content Include="Scripts\plugins\magicline\images\icon.png" />
+    <Content Include="Scripts\plugins\pastefromword\filter\default.js" />
+    <Content Include="Scripts\plugins\scayt\dialogs\options.js" />
+    <Content Include="Scripts\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\ar.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\bg.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\ca.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\cs.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\cy.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\de.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\el.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\en-gb.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\en.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\eo.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\es.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\et.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\fa.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\fi.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\fr-ca.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\fr.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\gl.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\he.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\hr.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\hu.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\id.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\it.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\ja.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\km.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\ku.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\lv.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\nb.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\nl.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\no.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\pl.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\pt-br.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\pt.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\ru.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\si.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\sk.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\sl.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\sq.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\sv.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\th.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\tr.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\tt.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\ug.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\uk.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\vi.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\zh-cn.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\zh.js" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Scripts\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="Scripts\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="Scripts\plugins\table\dialogs\table.js" />
+    <Content Include="Scripts\plugins\wsc\dialogs\ciframe.html" />
+    <Content Include="Scripts\plugins\wsc\dialogs\tmpFrameset.html" />
+    <Content Include="Scripts\plugins\wsc\dialogs\wsc.css" />
+    <Content Include="Scripts\plugins\wsc\dialogs\wsc.js" />
+    <Content Include="Scripts\plugins\wsc\dialogs\wsc_ie.js" />
+    <Content Include="Scripts\skins\moono\dialog.css" />
+    <Content Include="Scripts\skins\moono\dialog_ie.css" />
+    <Content Include="Scripts\skins\moono\dialog_ie7.css" />
+    <Content Include="Scripts\skins\moono\dialog_ie8.css" />
+    <Content Include="Scripts\skins\moono\dialog_iequirks.css" />
+    <Content Include="Scripts\skins\moono\editor.css" />
+    <Content Include="Scripts\skins\moono\editor_gecko.css" />
+    <Content Include="Scripts\skins\moono\editor_ie.css" />
+    <Content Include="Scripts\skins\moono\editor_ie7.css" />
+    <Content Include="Scripts\skins\moono\editor_ie8.css" />
+    <Content Include="Scripts\skins\moono\editor_iequirks.css" />
+    <Content Include="Scripts\skins\moono\icons.png" />
+    <Content Include="Scripts\skins\moono\icons_hidpi.png" />
+    <Content Include="Scripts\skins\moono\images\arrow.png" />
+    <Content Include="Scripts\skins\moono\images\close.png" />
+    <Content Include="Scripts\skins\moono\images\hidpi\close.png" />
+    <Content Include="Scripts\skins\moono\images\hidpi\lock-open.png" />
+    <Content Include="Scripts\skins\moono\images\hidpi\lock.png" />
+    <Content Include="Scripts\skins\moono\images\hidpi\refresh.png" />
+    <Content Include="Scripts\skins\moono\images\lock-open.png" />
+    <Content Include="Scripts\skins\moono\images\lock.png" />
+    <Content Include="Scripts\skins\moono\images\refresh.png" />
+    <Content Include="Scripts\styles.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -330,6 +574,11 @@
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Order\Order.cshtml" />
     <Content Include="Views\Order\Invoice.cshtml" />
+    <Content Include="Scripts\plugins\scayt\LICENSE.md" />
+    <Content Include="Scripts\plugins\scayt\README.md" />
+    <Content Include="Scripts\plugins\wsc\LICENSE.md" />
+    <Content Include="Scripts\plugins\wsc\README.md" />
+    <Content Include="Scripts\skins\moono\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

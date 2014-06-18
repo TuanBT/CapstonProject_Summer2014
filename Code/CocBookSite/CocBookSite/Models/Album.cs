@@ -14,11 +14,20 @@ namespace CocBookSite.Models
     
     public partial class Album
     {
+        public Album()
+        {
+            this.Musics = new HashSet<Music>();
+        }
+    
         public int AlbumId { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> PublishTime { get; set; }
         public int SingerId { get; set; }
+        public Nullable<bool> Active { get; set; }
+    
+        public virtual Singer Singer { get; set; }
+        public virtual ICollection<Music> Musics { get; set; }
     }
 }

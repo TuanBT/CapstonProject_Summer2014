@@ -26,25 +26,29 @@ namespace CocBookSite.Models
         }
     
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Album> Albums { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<BookInCategory> BookInCategories { get; set; }
         public DbSet<BookPrice> BookPrices { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public DbSet<ContraintValue> ContraintValues { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<GiftCode> GiftCodes { get; set; }
+        public DbSet<Music> Musics { get; set; }
+        public DbSet<MusicAuthor> MusicAuthors { get; set; }
+        public DbSet<MusicCategory> MusicCategories { get; set; }
+        public DbSet<MusicRating> MusicRatings { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<PointTransaction> PointTransactions { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<V_Book> V_Book { get; set; }
         public DbSet<SearchHistory> SearchHistories { get; set; }
-        public DbSet<Album> Albums { get; set; }
-        public DbSet<Music> Musics { get; set; }
-        public DbSet<MusicAuthor> MusicAuthors { get; set; }
-        public DbSet<MusicRating> MusicRatings { get; set; }
         public DbSet<Singer> Singers { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
+        public DbSet<V_Book> V_Book { get; set; }
+        public DbSet<V_Music> V_Music { get; set; }
     }
 }

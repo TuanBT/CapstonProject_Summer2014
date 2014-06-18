@@ -13,11 +13,13 @@
           <EntitySet Name="BookInCategory" EntityType="CocBookModel.Store.BookInCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BookPrice" EntityType="CocBookModel.Store.BookPrice" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Category" EntityType="CocBookModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Comment" EntityType="CocBookModel.Store.Comment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ContraintValue" EntityType="CocBookModel.Store.ContraintValue" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Customer" EntityType="CocBookModel.Store.Customer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GiftCode" EntityType="CocBookModel.Store.GiftCode" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Music" EntityType="CocBookModel.Store.Music" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MusicAuthor" EntityType="CocBookModel.Store.MusicAuthor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MusicAuthors" EntityType="CocBookModel.Store.MusicAuthors" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MusicCategory" EntityType="CocBookModel.Store.MusicCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MusicRating" EntityType="CocBookModel.Store.MusicRating" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Order" EntityType="CocBookModel.Store.Order" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderDetail" EntityType="CocBookModel.Store.OrderDetail" store:Type="Tables" Schema="dbo" />
@@ -26,6 +28,7 @@
           <EntitySet Name="Roles" EntityType="CocBookModel.Store.Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SearchHistory" EntityType="CocBookModel.Store.SearchHistory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Singer" EntityType="CocBookModel.Store.Singer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="CocBookModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="V_Book" EntityType="CocBookModel.Store.V_Book" store:Type="Views" store:Schema="dbo" store:Name="V_Book">
             <DefiningQuery>SELECT 
       [V_Book].[BookID] AS [BookID], 
@@ -48,53 +51,117 @@
       [V_Book].[AveScore] AS [AveScore]
       FROM [dbo].[V_Book] AS [V_Book]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__Account__RoleID__38996AB5" Association="CocBookModel.Store.FK__Account__RoleID__38996AB5">
+          <EntitySet Name="V_Music" EntityType="CocBookModel.Store.V_Music" store:Type="Views" store:Schema="dbo" store:Name="V_Music">
+            <DefiningQuery>SELECT 
+      [V_Music].[MusicId] AS [MusicId], 
+      [V_Music].[Name] AS [Name], 
+      [V_Music].[Info] AS [Info], 
+      [V_Music].[PublishTime] AS [PublishTime], 
+      [V_Music].[Price] AS [Price], 
+      [V_Music].[Tags] AS [Tags], 
+      [V_Music].[Size] AS [Size], 
+      [V_Music].[Duration] AS [Duration], 
+      [V_Music].[Quality] AS [Quality], 
+      [V_Music].[ViewNumber] AS [ViewNumber], 
+      [V_Music].[Link] AS [Link], 
+      [V_Music].[Active] AS [Active], 
+      [V_Music].[Description] AS [Description], 
+      [V_Music].[MusicCategoryName] AS [MusicCategoryName], 
+      [V_Music].[SingerName] AS [SingerName], 
+      [V_Music].[Age] AS [Age], 
+      [V_Music].[Country] AS [Country], 
+      [V_Music].[Company] AS [Company], 
+      [V_Music].[SingerDescription] AS [SingerDescription], 
+      [V_Music].[SingerActive] AS [SingerActive], 
+      [V_Music].[MusicCategoryActive] AS [MusicCategoryActive], 
+      [V_Music].[IsActive] AS [IsActive], 
+      [V_Music].[AlbumName] AS [AlbumName], 
+      [V_Music].[Image] AS [Image], 
+      [V_Music].[AlbumDescription] AS [AlbumDescription], 
+      [V_Music].[AlbumPublishTime] AS [AlbumPublishTime], 
+      [V_Music].[AlbumActive] AS [AlbumActive], 
+      [V_Music].[MusicAuthorsName] AS [MusicAuthorsName]
+      FROM [dbo].[V_Music] AS [V_Music]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Account__RoleID__45F365D3" Association="CocBookModel.Store.FK__Account__RoleID__45F365D3">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Account" EntitySet="Account" />
           </AssociationSet>
-          <AssociationSet Name="FK__Book__AuthorID__37A5467C" Association="CocBookModel.Store.FK__Book__AuthorID__37A5467C">
+          <AssociationSet Name="FK__Book__AuthorID__46E78A0C" Association="CocBookModel.Store.FK__Book__AuthorID__46E78A0C">
             <End Role="Author" EntitySet="Author" />
             <End Role="Book" EntitySet="Book" />
           </AssociationSet>
-          <AssociationSet Name="FK__BookInCat__BookI__3C69FB99" Association="CocBookModel.Store.FK__BookInCat__BookI__3C69FB99">
+          <AssociationSet Name="FK__BookInCat__BookI__48CFD27E" Association="CocBookModel.Store.FK__BookInCat__BookI__48CFD27E">
             <End Role="Book" EntitySet="Book" />
             <End Role="BookInCategory" EntitySet="BookInCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK__BookInCat__CateI__3D5E1FD2" Association="CocBookModel.Store.FK__BookInCat__CateI__3D5E1FD2">
+          <AssociationSet Name="FK__BookInCat__CateI__49C3F6B7" Association="CocBookModel.Store.FK__BookInCat__CateI__49C3F6B7">
             <End Role="Category" EntitySet="Category" />
             <End Role="BookInCategory" EntitySet="BookInCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK__BookPrice__BookI__3B75D760" Association="CocBookModel.Store.FK__BookPrice__BookI__3B75D760">
+          <AssociationSet Name="FK__BookPrice__BookI__47DBAE45" Association="CocBookModel.Store.FK__BookPrice__BookI__47DBAE45">
             <End Role="Book" EntitySet="Book" />
             <End Role="BookPrice" EntitySet="BookPrice" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customer__Userna__3A81B327" Association="CocBookModel.Store.FK__Customer__Userna__3A81B327">
+          <AssociationSet Name="FK__Customer__Userna__4E88ABD4" Association="CocBookModel.Store.FK__Customer__Userna__4E88ABD4">
             <End Role="Account" EntitySet="Account" />
             <End Role="Customer" EntitySet="Customer" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__Username__398D8EEE" Association="CocBookModel.Store.FK__Order__Username__398D8EEE">
+          <AssociationSet Name="FK__Order__Username__52593CB8" Association="CocBookModel.Store.FK__Order__Username__52593CB8">
             <End Role="Account" EntitySet="Account" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__BookI__412EB0B6" Association="CocBookModel.Store.FK__OrderDeta__BookI__412EB0B6">
+          <AssociationSet Name="FK__OrderDeta__BookI__5441852A" Association="CocBookModel.Store.FK__OrderDeta__BookI__5441852A">
             <End Role="Book" EntitySet="Book" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Order__4222D4EF" Association="CocBookModel.Store.FK__OrderDeta__Order__4222D4EF">
+          <AssociationSet Name="FK__OrderDeta__Order__5535A963" Association="CocBookModel.Store.FK__OrderDeta__Order__5535A963">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__PointTran__Usern__403A8C7D" Association="CocBookModel.Store.FK__PointTran__Usern__403A8C7D">
+          <AssociationSet Name="FK__PointTran__Usern__5165187F" Association="CocBookModel.Store.FK__PointTran__Usern__5165187F">
             <End Role="Account" EntitySet="Account" />
             <End Role="PointTransaction" EntitySet="PointTransaction" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__BookID__3E52440B" Association="CocBookModel.Store.FK__Rating__BookID__3E52440B">
+          <AssociationSet Name="FK__Rating__BookID__4F7CD00D" Association="CocBookModel.Store.FK__Rating__BookID__4F7CD00D">
             <End Role="Book" EntitySet="Book" />
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__Username__3F466844" Association="CocBookModel.Store.FK__Rating__Username__3F466844">
+          <AssociationSet Name="FK__Rating__Username__5070F446" Association="CocBookModel.Store.FK__Rating__Username__5070F446">
             <End Role="Account" EntitySet="Account" />
             <End Role="Rating" EntitySet="Rating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Album_Singer" Association="CocBookModel.Store.FK_Album_Singer">
+            <End Role="Singer" EntitySet="Singer" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Music" Association="CocBookModel.Store.FK_Comment_Music">
+            <End Role="Music" EntitySet="Music" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_Album" Association="CocBookModel.Store.FK_Music_Album">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Music" EntitySet="Music" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_MusicAuthors" Association="CocBookModel.Store.FK_Music_MusicAuthors">
+            <End Role="MusicAuthors" EntitySet="MusicAuthors" />
+            <End Role="Music" EntitySet="Music" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_MusicCategory" Association="CocBookModel.Store.FK_Music_MusicCategory">
+            <End Role="MusicCategory" EntitySet="MusicCategory" />
+            <End Role="Music" EntitySet="Music" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_Singer" Association="CocBookModel.Store.FK_Music_Singer">
+            <End Role="Singer" EntitySet="Singer" />
+            <End Role="Music" EntitySet="Music" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MusicRating_Music" Association="CocBookModel.Store.FK_MusicRating_Music">
+            <End Role="Music" EntitySet="Music" />
+            <End Role="MusicRating" EntitySet="MusicRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Music" Association="CocBookModel.Store.FK_OrderDetail_Music">
+            <End Role="Music" EntitySet="Music" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Account">
@@ -116,6 +183,7 @@
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="PublishTime" Type="datetime" />
           <Property Name="SingerId" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="Author">
           <Key>
@@ -175,6 +243,17 @@
           <Property Name="Position" Type="int" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MusicId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CmContent" Type="nvarchar" MaxLength="50" />
+          <Property Name="CmDate" Type="datetime" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
         <EntityType Name="ContraintValue">
           <Key>
             <PropertyRef Name="ContraintID" />
@@ -228,14 +307,24 @@
           <Property Name="ViewNumber" Type="int" />
           <Property Name="Link" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="CategoryId" Type="int" />
+          <Property Name="Active" Type="bit" />
         </EntityType>
-        <EntityType Name="MusicAuthor">
+        <EntityType Name="MusicAuthors">
           <Key>
-            <PropertyRef Name="AuthorId" />
+            <PropertyRef Name="AuthorID" />
           </Key>
-          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="AuthorID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MusicCategory">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="MusicRating">
           <Key>
@@ -246,6 +335,7 @@
           <Property Name="MusicId" Type="int" Nullable="false" />
           <Property Name="Score" Type="int" />
           <Property Name="RateDate" Type="datetime" />
+          <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -272,6 +362,7 @@
           <Property Name="DetailID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="OrderID" Type="int" />
           <Property Name="BookID" Type="int" />
+          <Property Name="MusicID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Price" Type="float" />
         </EntityType>
@@ -293,6 +384,7 @@
           <Property Name="BookID" Type="int" />
           <Property Name="Score" Type="float" />
           <Property Name="RateDate" Type="datetime" />
+          <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -322,6 +414,17 @@
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
           <Property Name="Company" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'CocBook.dbo.V_Book' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -349,7 +452,57 @@
           <Property Name="DealPercentage" Type="float" />
           <Property Name="AveScore" Type="float" />
         </EntityType>
-        <Association Name="FK__Account__RoleID__38996AB5">
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'CocBook.dbo.V_Music' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="V_Music">
+          <Key>
+            <PropertyRef Name="MusicId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="PublishTime" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Tags" />
+            <PropertyRef Name="Duration" />
+            <PropertyRef Name="Quality" />
+            <PropertyRef Name="Link" />
+            <PropertyRef Name="MusicCategoryName" />
+            <PropertyRef Name="SingerName" />
+            <PropertyRef Name="Age" />
+            <PropertyRef Name="MusicCategoryActive" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="AlbumName" />
+            <PropertyRef Name="Image" />
+          </Key>
+          <Property Name="MusicId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Info" Type="nvarchar" MaxLength="50" />
+          <Property Name="PublishTime" Type="datetime" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Tags" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Size" Type="nvarchar" MaxLength="50" />
+          <Property Name="Duration" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Quality" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ViewNumber" Type="int" />
+          <Property Name="Link" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="MusicCategoryName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SingerName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Company" Type="nvarchar" MaxLength="50" />
+          <Property Name="SingerDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="SingerActive" Type="bit" />
+          <Property Name="MusicCategoryActive" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="AlbumName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="AlbumDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="AlbumPublishTime" Type="datetime" />
+          <Property Name="AlbumActive" Type="bit" />
+          <Property Name="MusicAuthorsName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Account__RoleID__45F365D3">
           <End Role="Roles" Type="CocBookModel.Store.Roles" Multiplicity="0..1" />
           <End Role="Account" Type="CocBookModel.Store.Account" Multiplicity="*" />
           <ReferentialConstraint>
@@ -361,7 +514,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Book__AuthorID__37A5467C">
+        <Association Name="FK__Book__AuthorID__46E78A0C">
           <End Role="Author" Type="CocBookModel.Store.Author" Multiplicity="0..1" />
           <End Role="Book" Type="CocBookModel.Store.Book" Multiplicity="*" />
           <ReferentialConstraint>
@@ -373,7 +526,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BookInCat__BookI__3C69FB99">
+        <Association Name="FK__BookInCat__BookI__48CFD27E">
           <End Role="Book" Type="CocBookModel.Store.Book" Multiplicity="0..1" />
           <End Role="BookInCategory" Type="CocBookModel.Store.BookInCategory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -385,7 +538,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BookInCat__CateI__3D5E1FD2">
+        <Association Name="FK__BookInCat__CateI__49C3F6B7">
           <End Role="Category" Type="CocBookModel.Store.Category" Multiplicity="0..1" />
           <End Role="BookInCategory" Type="CocBookModel.Store.BookInCategory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -397,7 +550,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BookPrice__BookI__3B75D760">
+        <Association Name="FK__BookPrice__BookI__47DBAE45">
           <End Role="Book" Type="CocBookModel.Store.Book" Multiplicity="1" />
           <End Role="BookPrice" Type="CocBookModel.Store.BookPrice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -409,7 +562,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Customer__Userna__3A81B327">
+        <Association Name="FK__Customer__Userna__4E88ABD4">
           <End Role="Account" Type="CocBookModel.Store.Account" Multiplicity="1" />
           <End Role="Customer" Type="CocBookModel.Store.Customer" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -421,7 +574,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Order__Username__398D8EEE">
+        <Association Name="FK__Order__Username__52593CB8">
           <End Role="Account" Type="CocBookModel.Store.Account" Multiplicity="0..1" />
           <End Role="Order" Type="CocBookModel.Store.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -433,7 +586,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__BookI__412EB0B6">
+        <Association Name="FK__OrderDeta__BookI__5441852A">
           <End Role="Book" Type="CocBookModel.Store.Book" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="CocBookModel.Store.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -445,7 +598,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__Order__4222D4EF">
+        <Association Name="FK__OrderDeta__Order__5535A963">
           <End Role="Order" Type="CocBookModel.Store.Order" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="CocBookModel.Store.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -457,7 +610,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PointTran__Usern__403A8C7D">
+        <Association Name="FK__PointTran__Usern__5165187F">
           <End Role="Account" Type="CocBookModel.Store.Account" Multiplicity="0..1" />
           <End Role="PointTransaction" Type="CocBookModel.Store.PointTransaction" Multiplicity="*" />
           <ReferentialConstraint>
@@ -469,7 +622,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating__BookID__3E52440B">
+        <Association Name="FK__Rating__BookID__4F7CD00D">
           <End Role="Book" Type="CocBookModel.Store.Book" Multiplicity="0..1" />
           <End Role="Rating" Type="CocBookModel.Store.Rating" Multiplicity="*" />
           <ReferentialConstraint>
@@ -481,7 +634,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Rating__Username__3F466844">
+        <Association Name="FK__Rating__Username__5070F446">
           <End Role="Account" Type="CocBookModel.Store.Account" Multiplicity="0..1" />
           <End Role="Rating" Type="CocBookModel.Store.Rating" Multiplicity="*" />
           <ReferentialConstraint>
@@ -493,405 +646,515 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Album_Singer">
+          <End Role="Singer" Type="CocBookModel.Store.Singer" Multiplicity="1" />
+          <End Role="Album" Type="CocBookModel.Store.Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Singer">
+              <PropertyRef Name="SingerId" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="SingerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Music">
+          <End Role="Music" Type="CocBookModel.Store.Music" Multiplicity="1" />
+          <End Role="Comment" Type="CocBookModel.Store.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Music">
+              <PropertyRef Name="MusicId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="MusicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Music_Album">
+          <End Role="Album" Type="CocBookModel.Store.Album" Multiplicity="1" />
+          <End Role="Music" Type="CocBookModel.Store.Music" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="AlbumId" />
+            </Principal>
+            <Dependent Role="Music">
+              <PropertyRef Name="AlbumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Music_MusicAuthors">
+          <End Role="MusicAuthors" Type="CocBookModel.Store.MusicAuthors" Multiplicity="1" />
+          <End Role="Music" Type="CocBookModel.Store.Music" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MusicAuthors">
+              <PropertyRef Name="AuthorID" />
+            </Principal>
+            <Dependent Role="Music">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Music_MusicCategory">
+          <End Role="MusicCategory" Type="CocBookModel.Store.MusicCategory" Multiplicity="0..1" />
+          <End Role="Music" Type="CocBookModel.Store.Music" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MusicCategory">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Music">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Music_Singer">
+          <End Role="Singer" Type="CocBookModel.Store.Singer" Multiplicity="1" />
+          <End Role="Music" Type="CocBookModel.Store.Music" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Singer">
+              <PropertyRef Name="SingerId" />
+            </Principal>
+            <Dependent Role="Music">
+              <PropertyRef Name="SingerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MusicRating_Music">
+          <End Role="Music" Type="CocBookModel.Store.Music" Multiplicity="1" />
+          <End Role="MusicRating" Type="CocBookModel.Store.MusicRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Music">
+              <PropertyRef Name="MusicId" />
+            </Principal>
+            <Dependent Role="MusicRating">
+              <PropertyRef Name="MusicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Music">
+          <End Role="Music" Type="CocBookModel.Store.Music" Multiplicity="1" />
+          <End Role="OrderDetail" Type="CocBookModel.Store.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Music">
+              <PropertyRef Name="MusicId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="MusicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CocBookModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="CocBookEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="CocBookModel.Account" />
+          <EntitySet Name="Albums" EntityType="CocBookModel.Album" />
           <EntitySet Name="Authors" EntityType="CocBookModel.Author" />
           <EntitySet Name="Books" EntityType="CocBookModel.Book" />
           <EntitySet Name="BookInCategories" EntityType="CocBookModel.BookInCategory" />
           <EntitySet Name="BookPrices" EntityType="CocBookModel.BookPrice" />
           <EntitySet Name="Categories" EntityType="CocBookModel.Category" />
+          <EntitySet Name="Comments" EntityType="CocBookModel.Comment" />
           <EntitySet Name="ContraintValues" EntityType="CocBookModel.ContraintValue" />
           <EntitySet Name="Customers" EntityType="CocBookModel.Customer" />
           <EntitySet Name="GiftCodes" EntityType="CocBookModel.GiftCode" />
+          <EntitySet Name="Musics" EntityType="CocBookModel.Music" />
+          <EntitySet Name="MusicAuthors" EntityType="CocBookModel.MusicAuthor" />
+          <EntitySet Name="MusicCategories" EntityType="CocBookModel.MusicCategory" />
+          <EntitySet Name="MusicRatings" EntityType="CocBookModel.MusicRating" />
           <EntitySet Name="Orders" EntityType="CocBookModel.Order" />
           <EntitySet Name="OrderDetails" EntityType="CocBookModel.OrderDetail" />
           <EntitySet Name="PointTransactions" EntityType="CocBookModel.PointTransaction" />
           <EntitySet Name="Ratings" EntityType="CocBookModel.Rating" />
           <EntitySet Name="Roles" EntityType="CocBookModel.Role" />
-          <AssociationSet Name="FK__Account__RoleID__1BFD2C07" Association="CocBookModel.FK__Account__RoleID__1BFD2C07">
-            <End Role="Roles" EntitySet="Roles" />
+          <EntitySet Name="SearchHistories" EntityType="CocBookModel.SearchHistory" />
+          <EntitySet Name="Singers" EntityType="CocBookModel.Singer" />
+          <EntitySet Name="sysdiagrams" EntityType="CocBookModel.sysdiagram" />
+          <EntitySet Name="V_Book" EntityType="CocBookModel.V_Book" />
+          <EntitySet Name="V_Music" EntityType="CocBookModel.V_Music" />
+          <AssociationSet Name="FK__Account__RoleID__45F365D3" Association="CocBookModel.FK__Account__RoleID__45F365D3">
+            <End Role="Role" EntitySet="Roles" />
             <End Role="Account" EntitySet="Accounts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customer__Userna__20C1E124" Association="CocBookModel.FK__Customer__Userna__20C1E124">
+          <AssociationSet Name="FK__Customer__Userna__4E88ABD4" Association="CocBookModel.FK__Customer__Userna__4E88ABD4">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Customer" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__Username__300424B4" Association="CocBookModel.FK__Order__Username__300424B4">
+          <AssociationSet Name="FK__Order__Username__52593CB8" Association="CocBookModel.FK__Order__Username__52593CB8">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__PointTran__Usern__2B3F6F97" Association="CocBookModel.FK__PointTran__Usern__2B3F6F97">
+          <AssociationSet Name="FK__PointTran__Usern__5165187F" Association="CocBookModel.FK__PointTran__Usern__5165187F">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="PointTransaction" EntitySet="PointTransactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__Username__25869641" Association="CocBookModel.FK__Rating__Username__25869641">
+          <AssociationSet Name="FK__Rating__Username__5070F446" Association="CocBookModel.FK__Rating__Username__5070F446">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Rating" EntitySet="Ratings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Book__AuthorID__08EA5793" Association="CocBookModel.FK__Book__AuthorID__08EA5793">
+          <AssociationSet Name="FK_Album_Singer" Association="CocBookModel.FK_Album_Singer">
+            <End Role="Singer" EntitySet="Singers" />
+            <End Role="Album" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_Album" Association="CocBookModel.FK_Music_Album">
+            <End Role="Album" EntitySet="Albums" />
+            <End Role="Music" EntitySet="Musics" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__AuthorID__46E78A0C" Association="CocBookModel.FK__Book__AuthorID__46E78A0C">
             <End Role="Author" EntitySet="Authors" />
             <End Role="Book" EntitySet="Books" />
           </AssociationSet>
-          <AssociationSet Name="FK__BookInCat__BookI__0DAF0CB0" Association="CocBookModel.FK__BookInCat__BookI__0DAF0CB0">
+          <AssociationSet Name="FK__BookInCat__BookI__48CFD27E" Association="CocBookModel.FK__BookInCat__BookI__48CFD27E">
             <End Role="Book" EntitySet="Books" />
             <End Role="BookInCategory" EntitySet="BookInCategories" />
           </AssociationSet>
-          <AssociationSet Name="FK__BookPrice__BookI__1367E606" Association="CocBookModel.FK__BookPrice__BookI__1367E606">
+          <AssociationSet Name="FK__BookPrice__BookI__47DBAE45" Association="CocBookModel.FK__BookPrice__BookI__47DBAE45">
             <End Role="Book" EntitySet="Books" />
             <End Role="BookPrice" EntitySet="BookPrices" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__BookI__35BCFE0A" Association="CocBookModel.FK__OrderDeta__BookI__35BCFE0A">
+          <AssociationSet Name="FK__OrderDeta__BookI__5441852A" Association="CocBookModel.FK__OrderDeta__BookI__5441852A">
             <End Role="Book" EntitySet="Books" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__Rating__BookID__267ABA7A" Association="CocBookModel.FK__Rating__BookID__267ABA7A">
+          <AssociationSet Name="FK__Rating__BookID__4F7CD00D" Association="CocBookModel.FK__Rating__BookID__4F7CD00D">
             <End Role="Book" EntitySet="Books" />
             <End Role="Rating" EntitySet="Ratings" />
           </AssociationSet>
-          <AssociationSet Name="FK__BookInCat__CateI__0EA330E9" Association="CocBookModel.FK__BookInCat__CateI__0EA330E9">
+          <AssociationSet Name="FK__BookInCat__CateI__49C3F6B7" Association="CocBookModel.FK__BookInCat__CateI__49C3F6B7">
             <End Role="Category" EntitySet="Categories" />
             <End Role="BookInCategory" EntitySet="BookInCategories" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Order__34C8D9D1" Association="CocBookModel.FK__OrderDeta__Order__34C8D9D1">
+          <AssociationSet Name="FK_Comment_Music" Association="CocBookModel.FK_Comment_Music">
+            <End Role="Music" EntitySet="Musics" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_MusicAuthors" Association="CocBookModel.FK_Music_MusicAuthors">
+            <End Role="MusicAuthor" EntitySet="MusicAuthors" />
+            <End Role="Music" EntitySet="Musics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_MusicCategory" Association="CocBookModel.FK_Music_MusicCategory">
+            <End Role="MusicCategory" EntitySet="MusicCategories" />
+            <End Role="Music" EntitySet="Musics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Music_Singer" Association="CocBookModel.FK_Music_Singer">
+            <End Role="Singer" EntitySet="Singers" />
+            <End Role="Music" EntitySet="Musics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MusicRating_Music" Association="CocBookModel.FK_MusicRating_Music">
+            <End Role="Music" EntitySet="Musics" />
+            <End Role="MusicRating" EntitySet="MusicRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Music" Association="CocBookModel.FK_OrderDetail_Music">
+            <End Role="Music" EntitySet="Musics" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__5535A963" Association="CocBookModel.FK__OrderDeta__Order__5535A963">
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
-          <EntitySet Name="V_Book" EntityType="CocBookModel.V_Book" />
-          <EntitySet Name="SearchHistories" EntityType="CocBookModel.SearchHistory" />
-          <EntitySet Name="Albums" EntityType="CocBookModel.Album" />
-          <EntitySet Name="Musics" EntityType="CocBookModel.Music" />
-          <EntitySet Name="MusicAuthors" EntityType="CocBookModel.MusicAuthor" />
-          <EntitySet Name="MusicRatings" EntityType="CocBookModel.MusicRating" />
-          <EntitySet Name="Singers" EntityType="CocBookModel.Singer" />
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="Username" />
           </Key>
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
-          <Property Name="Password" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
-          <Property Name="RoleID" Type="Int32" />
-          <NavigationProperty Name="Role" Relationship="CocBookModel.FK__Account__RoleID__1BFD2C07" FromRole="Account" ToRole="Roles" />
-          <NavigationProperty Name="Customer" Relationship="CocBookModel.FK__Customer__Userna__20C1E124" FromRole="Account" ToRole="Customer" />
-          <NavigationProperty Name="Orders" Relationship="CocBookModel.FK__Order__Username__300424B4" FromRole="Account" ToRole="Order" />
-          <NavigationProperty Name="PointTransactions" Relationship="CocBookModel.FK__PointTran__Usern__2B3F6F97" FromRole="Account" ToRole="PointTransaction" />
-          <NavigationProperty Name="Ratings" Relationship="CocBookModel.FK__Rating__Username__25869641" FromRole="Account" ToRole="Rating" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="RoleID" />
           <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="Role" Relationship="CocBookModel.FK__Account__RoleID__45F365D3" FromRole="Account" ToRole="Role" />
+          <NavigationProperty Name="Customer" Relationship="CocBookModel.FK__Customer__Userna__4E88ABD4" FromRole="Account" ToRole="Customer" />
+          <NavigationProperty Name="Orders" Relationship="CocBookModel.FK__Order__Username__52593CB8" FromRole="Account" ToRole="Order" />
+          <NavigationProperty Name="PointTransactions" Relationship="CocBookModel.FK__PointTran__Usern__5165187F" FromRole="Account" ToRole="PointTransaction" />
+          <NavigationProperty Name="Ratings" Relationship="CocBookModel.FK__Rating__Username__5070F446" FromRole="Account" ToRole="Rating" />
+        </EntityType>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="AlbumId" />
+          </Key>
+          <Property Type="Int32" Name="AlbumId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Image" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PublishTime" Precision="3" />
+          <Property Type="Int32" Name="SingerId" Nullable="false" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="Singer" Relationship="CocBookModel.FK_Album_Singer" FromRole="Album" ToRole="Singer" />
+          <NavigationProperty Name="Musics" Relationship="CocBookModel.FK_Music_Album" FromRole="Album" ToRole="Music" />
         </EntityType>
         <EntityType Name="Author">
           <Key>
             <PropertyRef Name="AuthorID" />
           </Key>
-          <Property Name="AuthorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="NickName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Avatar" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="BioHistory" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
-          <Property Name="Active" Type="Boolean" />
-          <NavigationProperty Name="Books" Relationship="CocBookModel.FK__Book__AuthorID__08EA5793" FromRole="Author" ToRole="Book" />
+          <Property Type="Int32" Name="AuthorID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NickName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Avatar" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BioHistory" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="Books" Relationship="CocBookModel.FK__Book__AuthorID__46E78A0C" FromRole="Author" ToRole="Book" />
         </EntityType>
         <EntityType Name="Book">
           <Key>
             <PropertyRef Name="BookID" />
           </Key>
-          <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="AuthorID" Type="Int32" />
-          <Property Name="AuthorName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Info" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
-          <Property Name="Avatar" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Publisher" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="NoOfPublish" Type="Int32" />
-          <Property Name="PublishTime" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="BuyPrice" Type="Double" />
-          <Property Name="ShowPrice" Type="Double" />
-          <Property Name="Tags" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ExtendInfo" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="Active" Type="Boolean" />
-          <NavigationProperty Name="Author" Relationship="CocBookModel.FK__Book__AuthorID__08EA5793" FromRole="Book" ToRole="Author" />
-          <NavigationProperty Name="BookInCategories" Relationship="CocBookModel.FK__BookInCat__BookI__0DAF0CB0" FromRole="Book" ToRole="BookInCategory" />
-          <NavigationProperty Name="BookPrices" Relationship="CocBookModel.FK__BookPrice__BookI__1367E606" FromRole="Book" ToRole="BookPrice" />
-          <NavigationProperty Name="OrderDetails" Relationship="CocBookModel.FK__OrderDeta__BookI__35BCFE0A" FromRole="Book" ToRole="OrderDetail" />
-          <NavigationProperty Name="Ratings" Relationship="CocBookModel.FK__Rating__BookID__267ABA7A" FromRole="Book" ToRole="Rating" />
+          <Property Type="Int32" Name="BookID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="AuthorID" />
+          <Property Type="String" Name="AuthorName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Info" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Avatar" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Publisher" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="NoOfPublish" />
+          <Property Type="String" Name="PublishTime" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="BuyPrice" />
+          <Property Type="Double" Name="ShowPrice" />
+          <Property Type="String" Name="Tags" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ExtendInfo" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="Author" Relationship="CocBookModel.FK__Book__AuthorID__46E78A0C" FromRole="Book" ToRole="Author" />
+          <NavigationProperty Name="BookInCategories" Relationship="CocBookModel.FK__BookInCat__BookI__48CFD27E" FromRole="Book" ToRole="BookInCategory" />
+          <NavigationProperty Name="BookPrices" Relationship="CocBookModel.FK__BookPrice__BookI__47DBAE45" FromRole="Book" ToRole="BookPrice" />
+          <NavigationProperty Name="OrderDetails" Relationship="CocBookModel.FK__OrderDeta__BookI__5441852A" FromRole="Book" ToRole="OrderDetail" />
+          <NavigationProperty Name="Ratings" Relationship="CocBookModel.FK__Rating__BookID__4F7CD00D" FromRole="Book" ToRole="Rating" />
         </EntityType>
         <EntityType Name="BookInCategory">
           <Key>
             <PropertyRef Name="BookCateID" />
           </Key>
-          <Property Name="BookCateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BookID" Type="Int32" />
-          <Property Name="CateID" Type="Int32" />
-          <NavigationProperty Name="Book" Relationship="CocBookModel.FK__BookInCat__BookI__0DAF0CB0" FromRole="BookInCategory" ToRole="Book" />
-          <NavigationProperty Name="Category" Relationship="CocBookModel.FK__BookInCat__CateI__0EA330E9" FromRole="BookInCategory" ToRole="Category" />
+          <Property Type="Int32" Name="BookCateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="BookID" />
+          <Property Type="Int32" Name="CateID" />
+          <NavigationProperty Name="Book" Relationship="CocBookModel.FK__BookInCat__BookI__48CFD27E" FromRole="BookInCategory" ToRole="Book" />
+          <NavigationProperty Name="Category" Relationship="CocBookModel.FK__BookInCat__CateI__49C3F6B7" FromRole="BookInCategory" ToRole="Category" />
         </EntityType>
         <EntityType Name="BookPrice">
           <Key>
             <PropertyRef Name="BookID" />
             <PropertyRef Name="ApplyTime" />
           </Key>
-          <Property Name="BookID" Type="Int32" Nullable="false" />
-          <Property Name="ApplyTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Price" Type="Double" />
-          <NavigationProperty Name="Book" Relationship="CocBookModel.FK__BookPrice__BookI__1367E606" FromRole="BookPrice" ToRole="Book" />
+          <Property Type="Int32" Name="BookID" Nullable="false" />
+          <Property Type="DateTime" Name="ApplyTime" Nullable="false" Precision="3" />
+          <Property Type="Double" Name="Price" />
+          <NavigationProperty Name="Book" Relationship="CocBookModel.FK__BookPrice__BookI__47DBAE45" FromRole="BookPrice" ToRole="Book" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CateID" />
           </Key>
-          <Property Name="CateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Info" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="Position" Type="Int32" />
-          <Property Name="Active" Type="Boolean" />
-          <NavigationProperty Name="BookInCategories" Relationship="CocBookModel.FK__BookInCat__CateI__0EA330E9" FromRole="Category" ToRole="BookInCategory" />
+          <Property Type="Int32" Name="CateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Info" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Position" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="BookInCategories" Relationship="CocBookModel.FK__BookInCat__CateI__49C3F6B7" FromRole="Category" ToRole="BookInCategory" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Type="Int32" Name="CommentId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="MusicId" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="CmContent" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CmDate" Precision="3" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="Music" Relationship="CocBookModel.FK_Comment_Music" FromRole="Comment" ToRole="Music" />
         </EntityType>
         <EntityType Name="ContraintValue">
           <Key>
             <PropertyRef Name="ContraintID" />
           </Key>
-          <Property Name="ContraintID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ContrainName" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
-          <Property Name="ContrainDescription" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="ContrainValue" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="ContraintID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ContrainName" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContrainDescription" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContrainValue" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Username" />
           </Key>
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
-          <Property Name="Fullname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Phone" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="District" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="Street" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="City" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="Point" Type="Int32" />
-          <NavigationProperty Name="Account" Relationship="CocBookModel.FK__Customer__Userna__20C1E124" FromRole="Customer" ToRole="Account" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Fullname" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="District" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Street" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Point" />
+          <NavigationProperty Name="Account" Relationship="CocBookModel.FK__Customer__Userna__4E88ABD4" FromRole="Customer" ToRole="Account" />
         </EntityType>
         <EntityType Name="GiftCode">
           <Key>
             <PropertyRef Name="GiftID" />
           </Key>
-          <Property Name="GiftID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GiftCode1" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="Discount" Type="Double" />
-          <Property Name="FromDate" Type="DateTime" Precision="3" />
-          <Property Name="ToDate" Type="DateTime" Precision="3" />
-          <Property Name="Active" Type="Boolean" />
-          <Property Name="OrderID" Type="Int32" />
+          <Property Type="Int32" Name="GiftID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="GiftCode1" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Discount" />
+          <Property Type="DateTime" Name="FromDate" Precision="3" />
+          <Property Type="DateTime" Name="ToDate" Precision="3" />
+          <Property Type="Boolean" Name="Active" />
+          <Property Type="Int32" Name="OrderID" />
+        </EntityType>
+        <EntityType Name="Music">
+          <Key>
+            <PropertyRef Name="MusicId" />
+          </Key>
+          <Property Type="Int32" Name="MusicId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SingerId" Nullable="false" />
+          <Property Type="Int32" Name="AlbumId" Nullable="false" />
+          <Property Type="Int32" Name="AuthorId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Info" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PublishTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="Price" Nullable="false" />
+          <Property Type="String" Name="Tags" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Size" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Duration" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Quality" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ViewNumber" />
+          <Property Type="String" Name="Link" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CategoryId" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="Album" Relationship="CocBookModel.FK_Music_Album" FromRole="Music" ToRole="Album" />
+          <NavigationProperty Name="Comments" Relationship="CocBookModel.FK_Comment_Music" FromRole="Music" ToRole="Comment" />
+          <NavigationProperty Name="MusicAuthor" Relationship="CocBookModel.FK_Music_MusicAuthors" FromRole="Music" ToRole="MusicAuthor" />
+          <NavigationProperty Name="MusicCategory" Relationship="CocBookModel.FK_Music_MusicCategory" FromRole="Music" ToRole="MusicCategory" />
+          <NavigationProperty Name="Singer" Relationship="CocBookModel.FK_Music_Singer" FromRole="Music" ToRole="Singer" />
+          <NavigationProperty Name="MusicRatings" Relationship="CocBookModel.FK_MusicRating_Music" FromRole="Music" ToRole="MusicRating" />
+          <NavigationProperty Name="OrderDetails" Relationship="CocBookModel.FK_OrderDetail_Music" FromRole="Music" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="MusicAuthor">
+          <Key>
+            <PropertyRef Name="AuthorID" />
+          </Key>
+          <Property Type="Int32" Name="AuthorID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <NavigationProperty Name="Musics" Relationship="CocBookModel.FK_Music_MusicAuthors" FromRole="MusicAuthor" ToRole="Music" />
+        </EntityType>
+        <EntityType Name="MusicCategory">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Type="Int32" Name="CategoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="Musics" Relationship="CocBookModel.FK_Music_MusicCategory" FromRole="MusicCategory" ToRole="Music" />
+        </EntityType>
+        <EntityType Name="MusicRating">
+          <Key>
+            <PropertyRef Name="RateID" />
+          </Key>
+          <Property Type="Int32" Name="RateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MusicId" Nullable="false" />
+          <Property Type="Int32" Name="Score" />
+          <Property Type="DateTime" Name="RateDate" Precision="3" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="Music" Relationship="CocBookModel.FK_MusicRating_Music" FromRole="MusicRating" ToRole="Music" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
-          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
-          <Property Name="RequestDate" Type="DateTime" Precision="3" />
-          <Property Name="Notes" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <Property Name="Total" Type="Double" />
-          <Property Name="Status" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
-          <Property Name="Fullname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Phone" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="District" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="Street" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="City" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="Elog" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="GiftCode" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Account" Relationship="CocBookModel.FK__Order__Username__300424B4" FromRole="Order" ToRole="Account" />
-          <NavigationProperty Name="OrderDetails" Relationship="CocBookModel.FK__OrderDeta__Order__34C8D9D1" FromRole="Order" ToRole="OrderDetail" />
+          <Property Type="Int32" Name="OrderID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Username" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="RequestDate" Precision="3" />
+          <Property Type="String" Name="Notes" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="Total" />
+          <Property Type="String" Name="Status" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Fullname" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="District" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Street" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Elog" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="GiftCode" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Account" Relationship="CocBookModel.FK__Order__Username__52593CB8" FromRole="Order" ToRole="Account" />
+          <NavigationProperty Name="OrderDetails" Relationship="CocBookModel.FK__OrderDeta__Order__5535A963" FromRole="Order" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
             <PropertyRef Name="DetailID" />
           </Key>
-          <Property Name="DetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrderID" Type="Int32" />
-          <Property Name="BookID" Type="Int32" />
-          <Property Name="Quantity" Type="Int32" />
-          <NavigationProperty Name="Book" Relationship="CocBookModel.FK__OrderDeta__BookI__35BCFE0A" FromRole="OrderDetail" ToRole="Book" />
-          <NavigationProperty Name="Order" Relationship="CocBookModel.FK__OrderDeta__Order__34C8D9D1" FromRole="OrderDetail" ToRole="Order" />
+          <Property Type="Int32" Name="DetailID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="OrderID" />
+          <Property Type="Int32" Name="BookID" />
+          <Property Type="Int32" Name="MusicID" Nullable="false" />
+          <Property Type="Int32" Name="Quantity" />
           <Property Type="Double" Name="Price" />
+          <NavigationProperty Name="Book" Relationship="CocBookModel.FK__OrderDeta__BookI__5441852A" FromRole="OrderDetail" ToRole="Book" />
+          <NavigationProperty Name="Music" Relationship="CocBookModel.FK_OrderDetail_Music" FromRole="OrderDetail" ToRole="Music" />
+          <NavigationProperty Name="Order" Relationship="CocBookModel.FK__OrderDeta__Order__5535A963" FromRole="OrderDetail" ToRole="Order" />
         </EntityType>
         <EntityType Name="PointTransaction">
           <Key>
             <PropertyRef Name="TranID" />
           </Key>
-          <Property Name="TranID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
-          <Property Name="Point" Type="Int32" />
-          <Property Name="TranTime" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Account" Relationship="CocBookModel.FK__PointTran__Usern__2B3F6F97" FromRole="PointTransaction" ToRole="Account" />
+          <Property Type="Int32" Name="TranID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Username" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Point" />
+          <Property Type="DateTime" Name="TranTime" Precision="3" />
+          <NavigationProperty Name="Account" Relationship="CocBookModel.FK__PointTran__Usern__5165187F" FromRole="PointTransaction" ToRole="Account" />
         </EntityType>
         <EntityType Name="Rating">
           <Key>
             <PropertyRef Name="RateID" />
           </Key>
-          <Property Name="RateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
-          <Property Name="BookID" Type="Int32" />
-          <Property Name="Score" Type="Double" />
-          <Property Name="RateDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Account" Relationship="CocBookModel.FK__Rating__Username__25869641" FromRole="Rating" ToRole="Account" />
-          <NavigationProperty Name="Book" Relationship="CocBookModel.FK__Rating__BookID__267ABA7A" FromRole="Rating" ToRole="Book" />
+          <Property Type="Int32" Name="RateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Username" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="BookID" />
+          <Property Type="Double" Name="Score" />
+          <Property Type="DateTime" Name="RateDate" Precision="3" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="Account" Relationship="CocBookModel.FK__Rating__Username__5070F446" FromRole="Rating" ToRole="Account" />
+          <NavigationProperty Name="Book" Relationship="CocBookModel.FK__Rating__BookID__4F7CD00D" FromRole="Rating" ToRole="Book" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="RoleID" />
           </Key>
-          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Info" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Accounts" Relationship="CocBookModel.FK__Account__RoleID__1BFD2C07" FromRole="Roles" ToRole="Account" />
+          <Property Type="Int32" Name="RoleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Info" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accounts" Relationship="CocBookModel.FK__Account__RoleID__45F365D3" FromRole="Role" ToRole="Account" />
         </EntityType>
-        <Association Name="FK__Account__RoleID__1BFD2C07">
-          <End Role="Roles" Type="CocBookModel.Role" Multiplicity="0..1" />
-          <End Role="Account" Type="CocBookModel.Account" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="RoleID" />
-            </Principal>
-            <Dependent Role="Account">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Customer__Userna__20C1E124">
-          <End Role="Account" Type="CocBookModel.Account" Multiplicity="1" />
-          <End Role="Customer" Type="CocBookModel.Customer" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="Username" />
-            </Principal>
-            <Dependent Role="Customer">
-              <PropertyRef Name="Username" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Order__Username__300424B4">
-          <End Role="Account" Type="CocBookModel.Account" Multiplicity="0..1" />
-          <End Role="Order" Type="CocBookModel.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="Username" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="Username" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PointTran__Usern__2B3F6F97">
-          <End Role="Account" Type="CocBookModel.Account" Multiplicity="0..1" />
-          <End Role="PointTransaction" Type="CocBookModel.PointTransaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="Username" />
-            </Principal>
-            <Dependent Role="PointTransaction">
-              <PropertyRef Name="Username" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Rating__Username__25869641">
-          <End Role="Account" Type="CocBookModel.Account" Multiplicity="0..1" />
-          <End Role="Rating" Type="CocBookModel.Rating" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="Username" />
-            </Principal>
-            <Dependent Role="Rating">
-              <PropertyRef Name="Username" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Book__AuthorID__08EA5793">
-          <End Role="Author" Type="CocBookModel.Author" Multiplicity="0..1" />
-          <End Role="Book" Type="CocBookModel.Book" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Author">
-              <PropertyRef Name="AuthorID" />
-            </Principal>
-            <Dependent Role="Book">
-              <PropertyRef Name="AuthorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BookInCat__BookI__0DAF0CB0">
-          <End Role="Book" Type="CocBookModel.Book" Multiplicity="0..1" />
-          <End Role="BookInCategory" Type="CocBookModel.BookInCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="BookID" />
-            </Principal>
-            <Dependent Role="BookInCategory">
-              <PropertyRef Name="BookID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BookPrice__BookI__1367E606">
-          <End Role="Book" Type="CocBookModel.Book" Multiplicity="1" />
-          <End Role="BookPrice" Type="CocBookModel.BookPrice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="BookID" />
-            </Principal>
-            <Dependent Role="BookPrice">
-              <PropertyRef Name="BookID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OrderDeta__BookI__35BCFE0A">
-          <End Role="Book" Type="CocBookModel.Book" Multiplicity="0..1" />
-          <End Role="OrderDetail" Type="CocBookModel.OrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="BookID" />
-            </Principal>
-            <Dependent Role="OrderDetail">
-              <PropertyRef Name="BookID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Rating__BookID__267ABA7A">
-          <End Role="Book" Type="CocBookModel.Book" Multiplicity="0..1" />
-          <End Role="Rating" Type="CocBookModel.Rating" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="BookID" />
-            </Principal>
-            <Dependent Role="Rating">
-              <PropertyRef Name="BookID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BookInCat__CateI__0EA330E9">
-          <End Role="Category" Type="CocBookModel.Category" Multiplicity="0..1" />
-          <End Role="BookInCategory" Type="CocBookModel.BookInCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CateID" />
-            </Principal>
-            <Dependent Role="BookInCategory">
-              <PropertyRef Name="CateID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OrderDeta__Order__34C8D9D1">
-          <End Role="Order" Type="CocBookModel.Order" Multiplicity="0..1" />
-          <End Role="OrderDetail" Type="CocBookModel.OrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="OrderID" />
-            </Principal>
-            <Dependent Role="OrderDetail">
-              <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="SearchHistory">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Type="Int32" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SearchValue" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Username" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="HitCount" />
+          <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+        </EntityType>
+        <EntityType Name="Singer">
+          <Key>
+            <PropertyRef Name="SingerId" />
+          </Key>
+          <Property Type="Int32" Name="SingerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Country" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Company" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="Albums" Relationship="CocBookModel.FK_Album_Singer" FromRole="Singer" ToRole="Album" />
+          <NavigationProperty Name="Musics" Relationship="CocBookModel.FK_Music_Singer" FromRole="Singer" ToRole="Music" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="version" />
+          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="V_Book">
           <Key>
             <PropertyRef Name="BookID" />
@@ -915,35 +1178,25 @@
           <Property Type="Double" Name="DealPercentage" />
           <Property Type="Double" Name="AveScore" />
         </EntityType>
-        <EntityType Name="SearchHistory">
-          <Key>
-            <PropertyRef Name="AutoID" />
-          </Key>
-          <Property Type="Int32" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="SearchValue" MaxLength="80" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Username" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="HitCount" />
-          <Property Type="DateTime" Name="CreatedDate" Precision="3" />
-        </EntityType>
-        <EntityType Name="Album">
-          <Key>
-            <PropertyRef Name="AlbumId" />
-          </Key>
-          <Property Type="Int32" Name="AlbumId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Image" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="PublishTime" Precision="3" />
-          <Property Type="Int32" Name="SingerId" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Music">
+        <EntityType Name="V_Music">
           <Key>
             <PropertyRef Name="MusicId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="PublishTime" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Tags" />
+            <PropertyRef Name="Duration" />
+            <PropertyRef Name="Quality" />
+            <PropertyRef Name="Link" />
+            <PropertyRef Name="MusicCategoryName" />
+            <PropertyRef Name="SingerName" />
+            <PropertyRef Name="Age" />
+            <PropertyRef Name="MusicCategoryActive" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="AlbumName" />
+            <PropertyRef Name="Image" />
           </Key>
-          <Property Type="Int32" Name="MusicId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="SingerId" Nullable="false" />
-          <Property Type="Int32" Name="AlbumId" Nullable="false" />
-          <Property Type="Int32" Name="AuthorId" Nullable="false" />
+          <Property Type="Int32" Name="MusicId" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Info" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="PublishTime" Nullable="false" Precision="3" />
@@ -954,38 +1207,265 @@
           <Property Type="String" Name="Quality" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="ViewNumber" />
           <Property Type="String" Name="Link" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="CategoryId" />
-        </EntityType>
-        <EntityType Name="MusicAuthor">
-          <Key>
-            <PropertyRef Name="AuthorId" />
-          </Key>
-          <Property Type="Int32" Name="AuthorId" Nullable="false" />
-          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" />
           <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="MusicRating">
-          <Key>
-            <PropertyRef Name="RateID" />
-          </Key>
-          <Property Type="Int32" Name="RateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="MusicId" Nullable="false" />
-          <Property Type="Int32" Name="Score" />
-          <Property Type="DateTime" Name="RateDate" Precision="3" />
-        </EntityType>
-        <EntityType Name="Singer">
-          <Key>
-            <PropertyRef Name="SingerId" />
-          </Key>
-          <Property Type="Int32" Name="SingerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MusicCategoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SingerName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="Age" Nullable="false" />
           <Property Type="String" Name="Country" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Company" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SingerDescription" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="SingerActive" />
+          <Property Type="Boolean" Name="MusicCategoryActive" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="String" Name="AlbumName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Image" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AlbumDescription" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="AlbumPublishTime" Precision="3" />
+          <Property Type="Boolean" Name="AlbumActive" />
+          <Property Type="String" Name="MusicAuthorsName" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-      </Schema>
+        <Association Name="FK__Account__RoleID__45F365D3">
+          <End Type="CocBookModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="CocBookModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customer__Userna__4E88ABD4">
+          <End Type="CocBookModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="CocBookModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__Username__52593CB8">
+          <End Type="CocBookModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="CocBookModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PointTran__Usern__5165187F">
+          <End Type="CocBookModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="CocBookModel.PointTransaction" Role="PointTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="PointTransaction">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rating__Username__5070F446">
+          <End Type="CocBookModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="CocBookModel.Rating" Role="Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Album_Singer">
+          <End Type="CocBookModel.Singer" Role="Singer" Multiplicity="1" />
+          <End Type="CocBookModel.Album" Role="Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Singer">
+              <PropertyRef Name="SingerId" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="SingerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Music_Album">
+          <End Type="CocBookModel.Album" Role="Album" Multiplicity="1" />
+          <End Type="CocBookModel.Music" Role="Music" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="AlbumId" />
+            </Principal>
+            <Dependent Role="Music">
+              <PropertyRef Name="AlbumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__AuthorID__46E78A0C">
+          <End Type="CocBookModel.Author" Role="Author" Multiplicity="0..1" />
+          <End Type="CocBookModel.Book" Role="Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="AuthorID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookInCat__BookI__48CFD27E">
+          <End Type="CocBookModel.Book" Role="Book" Multiplicity="0..1" />
+          <End Type="CocBookModel.BookInCategory" Role="BookInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BookInCategory">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookPrice__BookI__47DBAE45">
+          <End Type="CocBookModel.Book" Role="Book" Multiplicity="1" />
+          <End Type="CocBookModel.BookPrice" Role="BookPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BookPrice">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__BookI__5441852A">
+          <End Type="CocBookModel.Book" Role="Book" Multiplicity="0..1" />
+          <End Type="CocBookModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rating__BookID__4F7CD00D">
+          <End Type="CocBookModel.Book" Role="Book" Multiplicity="0..1" />
+          <End Type="CocBookModel.Rating" Role="Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookInCat__CateI__49C3F6B7">
+          <End Type="CocBookModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="CocBookModel.BookInCategory" Role="BookInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CateID" />
+            </Principal>
+            <Dependent Role="BookInCategory">
+              <PropertyRef Name="CateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Music">
+          <End Type="CocBookModel.Music" Role="Music" Multiplicity="1" />
+          <End Type="CocBookModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Music">
+              <PropertyRef Name="MusicId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="MusicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Music_MusicAuthors">
+          <End Type="CocBookModel.MusicAuthor" Role="MusicAuthor" Multiplicity="1" />
+          <End Type="CocBookModel.Music" Role="Music" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MusicAuthor">
+              <PropertyRef Name="AuthorID" />
+            </Principal>
+            <Dependent Role="Music">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Music_MusicCategory">
+          <End Type="CocBookModel.MusicCategory" Role="MusicCategory" Multiplicity="0..1" />
+          <End Type="CocBookModel.Music" Role="Music" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MusicCategory">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Music">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Music_Singer">
+          <End Type="CocBookModel.Singer" Role="Singer" Multiplicity="1" />
+          <End Type="CocBookModel.Music" Role="Music" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Singer">
+              <PropertyRef Name="SingerId" />
+            </Principal>
+            <Dependent Role="Music">
+              <PropertyRef Name="SingerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MusicRating_Music">
+          <End Type="CocBookModel.Music" Role="Music" Multiplicity="1" />
+          <End Type="CocBookModel.MusicRating" Role="MusicRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Music">
+              <PropertyRef Name="MusicId" />
+            </Principal>
+            <Dependent Role="MusicRating">
+              <PropertyRef Name="MusicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Music">
+          <End Type="CocBookModel.Music" Role="Music" Multiplicity="1" />
+          <End Type="CocBookModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Music">
+              <PropertyRef Name="MusicId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="MusicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__5535A963">
+          <End Type="CocBookModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="CocBookModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -995,127 +1475,205 @@
             <EntityTypeMapping TypeName="CocBookModel.Account">
               <MappingFragment StoreEntitySet="Account">
                 <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Albums">
+            <EntityTypeMapping TypeName="CocBookModel.Album">
+              <MappingFragment StoreEntitySet="Album">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="SingerId" ColumnName="SingerId" />
+                <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Authors">
             <EntityTypeMapping TypeName="CocBookModel.Author">
               <MappingFragment StoreEntitySet="Author">
-                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="NickName" ColumnName="NickName" />
-                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
-                <ScalarProperty Name="BioHistory" ColumnName="BioHistory" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="BioHistory" ColumnName="BioHistory" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="CocBookModel.Book">
               <MappingFragment StoreEntitySet="Book">
-                <ScalarProperty Name="BookID" ColumnName="BookID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
-                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
-                <ScalarProperty Name="Info" ColumnName="Info" />
-                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
-                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
-                <ScalarProperty Name="NoOfPublish" ColumnName="NoOfPublish" />
-                <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
-                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
-                <ScalarProperty Name="ShowPrice" ColumnName="ShowPrice" />
-                <ScalarProperty Name="Tags" ColumnName="Tags" />
-                <ScalarProperty Name="ExtendInfo" ColumnName="ExtendInfo" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ExtendInfo" ColumnName="ExtendInfo" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="ShowPrice" ColumnName="ShowPrice" />
+                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+                <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
+                <ScalarProperty Name="NoOfPublish" ColumnName="NoOfPublish" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BookInCategories">
             <EntityTypeMapping TypeName="CocBookModel.BookInCategory">
               <MappingFragment StoreEntitySet="BookInCategory">
-                <ScalarProperty Name="BookCateID" ColumnName="BookCateID" />
-                <ScalarProperty Name="BookID" ColumnName="BookID" />
                 <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="BookCateID" ColumnName="BookCateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BookPrices">
             <EntityTypeMapping TypeName="CocBookModel.BookPrice">
               <MappingFragment StoreEntitySet="BookPrice">
-                <ScalarProperty Name="BookID" ColumnName="BookID" />
-                <ScalarProperty Name="ApplyTime" ColumnName="ApplyTime" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ApplyTime" ColumnName="ApplyTime" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="CocBookModel.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="CateID" ColumnName="CateID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Info" ColumnName="Info" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="CocBookModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CmDate" ColumnName="CmDate" />
+                <ScalarProperty Name="CmContent" ColumnName="CmContent" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MusicId" ColumnName="MusicId" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ContraintValues">
             <EntityTypeMapping TypeName="CocBookModel.ContraintValue">
               <MappingFragment StoreEntitySet="ContraintValue">
-                <ScalarProperty Name="ContraintID" ColumnName="ContraintID" />
-                <ScalarProperty Name="ContrainName" ColumnName="ContrainName" />
-                <ScalarProperty Name="ContrainDescription" ColumnName="ContrainDescription" />
                 <ScalarProperty Name="ContrainValue" ColumnName="ContrainValue" />
+                <ScalarProperty Name="ContrainDescription" ColumnName="ContrainDescription" />
+                <ScalarProperty Name="ContrainName" ColumnName="ContrainName" />
+                <ScalarProperty Name="ContraintID" ColumnName="ContraintID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="CocBookModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GiftCodes">
             <EntityTypeMapping TypeName="CocBookModel.GiftCode">
               <MappingFragment StoreEntitySet="GiftCode">
-                <ScalarProperty Name="GiftID" ColumnName="GiftID" />
-                <ScalarProperty Name="GiftCode1" ColumnName="GiftCode" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
-                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="GiftCode1" ColumnName="GiftCode" />
+                <ScalarProperty Name="GiftID" ColumnName="GiftID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musics">
+            <EntityTypeMapping TypeName="CocBookModel.Music">
+              <MappingFragment StoreEntitySet="Music">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="ViewNumber" ColumnName="ViewNumber" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+                <ScalarProperty Name="SingerId" ColumnName="SingerId" />
+                <ScalarProperty Name="MusicId" ColumnName="MusicId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusicAuthors">
+            <EntityTypeMapping TypeName="CocBookModel.MusicAuthor">
+              <MappingFragment StoreEntitySet="MusicAuthors">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusicCategories">
+            <EntityTypeMapping TypeName="CocBookModel.MusicCategory">
+              <MappingFragment StoreEntitySet="MusicCategory">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusicRatings">
+            <EntityTypeMapping TypeName="CocBookModel.MusicRating">
+              <MappingFragment StoreEntitySet="MusicRating">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="RateDate" ColumnName="RateDate" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="MusicId" ColumnName="MusicId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="RateID" ColumnName="RateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="CocBookModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Elog" ColumnName="Elog" />
                 <ScalarProperty Name="GiftCode" ColumnName="GiftCode" />
+                <ScalarProperty Name="Elog" ColumnName="Elog" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1123,40 +1681,77 @@
             <EntityTypeMapping TypeName="CocBookModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetail">
                 <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="DetailID" ColumnName="DetailID" />
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="BookID" ColumnName="BookID" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MusicID" ColumnName="MusicID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="DetailID" ColumnName="DetailID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PointTransactions">
             <EntityTypeMapping TypeName="CocBookModel.PointTransaction">
               <MappingFragment StoreEntitySet="PointTransaction">
-                <ScalarProperty Name="TranID" ColumnName="TranID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Point" ColumnName="Point" />
                 <ScalarProperty Name="TranTime" ColumnName="TranTime" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="TranID" ColumnName="TranID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ratings">
             <EntityTypeMapping TypeName="CocBookModel.Rating">
               <MappingFragment StoreEntitySet="Rating">
-                <ScalarProperty Name="RateID" ColumnName="RateID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="BookID" ColumnName="BookID" />
-                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="RateDate" ColumnName="RateDate" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="RateID" ColumnName="RateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="CocBookModel.Role">
               <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchHistories">
+            <EntityTypeMapping TypeName="CocBookModel.SearchHistory">
+              <MappingFragment StoreEntitySet="SearchHistory">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="HitCount" ColumnName="HitCount" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="SearchValue" ColumnName="SearchValue" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Singers">
+            <EntityTypeMapping TypeName="CocBookModel.Singer">
+              <MappingFragment StoreEntitySet="Singer">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SingerId" ColumnName="SingerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CocBookModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1184,33 +1779,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SearchHistories">
-            <EntityTypeMapping TypeName="CocBookModel.SearchHistory">
-              <MappingFragment StoreEntitySet="SearchHistory">
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="HitCount" ColumnName="HitCount" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="SearchValue" ColumnName="SearchValue" />
-                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Albums">
-            <EntityTypeMapping TypeName="CocBookModel.Album">
-              <MappingFragment StoreEntitySet="Album">
-                <ScalarProperty Name="SingerId" ColumnName="SingerId" />
-                <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
+          <EntitySetMapping Name="V_Music">
+            <EntityTypeMapping TypeName="CocBookModel.V_Music">
+              <MappingFragment StoreEntitySet="V_Music">
+                <ScalarProperty Name="MusicAuthorsName" ColumnName="MusicAuthorsName" />
+                <ScalarProperty Name="AlbumActive" ColumnName="AlbumActive" />
+                <ScalarProperty Name="AlbumPublishTime" ColumnName="AlbumPublishTime" />
+                <ScalarProperty Name="AlbumDescription" ColumnName="AlbumDescription" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Musics">
-            <EntityTypeMapping TypeName="CocBookModel.Music">
-              <MappingFragment StoreEntitySet="Music">
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="AlbumName" ColumnName="AlbumName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="MusicCategoryActive" ColumnName="MusicCategoryActive" />
+                <ScalarProperty Name="SingerActive" ColumnName="SingerActive" />
+                <ScalarProperty Name="SingerDescription" ColumnName="SingerDescription" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="SingerName" ColumnName="SingerName" />
+                <ScalarProperty Name="MusicCategoryName" ColumnName="MusicCategoryName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="ViewNumber" ColumnName="ViewNumber" />
                 <ScalarProperty Name="Quality" ColumnName="Quality" />
@@ -1221,42 +1809,7 @@
                 <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
                 <ScalarProperty Name="Info" ColumnName="Info" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
-                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
-                <ScalarProperty Name="SingerId" ColumnName="SingerId" />
                 <ScalarProperty Name="MusicId" ColumnName="MusicId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MusicAuthors">
-            <EntityTypeMapping TypeName="CocBookModel.MusicAuthor">
-              <MappingFragment StoreEntitySet="MusicAuthor">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MusicRatings">
-            <EntityTypeMapping TypeName="CocBookModel.MusicRating">
-              <MappingFragment StoreEntitySet="MusicRating">
-                <ScalarProperty Name="RateDate" ColumnName="RateDate" />
-                <ScalarProperty Name="Score" ColumnName="Score" />
-                <ScalarProperty Name="MusicId" ColumnName="MusicId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="RateID" ColumnName="RateID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Singers">
-            <EntityTypeMapping TypeName="CocBookModel.Singer">
-              <MappingFragment StoreEntitySet="Singer">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="SingerId" ColumnName="SingerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1281,113 +1834,52 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="CocBookModel" ZoomLevel="65">
-        <EntityTypeShape EntityType="CocBookModel.Account" Width="1.5" PointX="0.75" PointY="4" Height="2.5571907552083335" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.Author" Width="1.5" PointX="0.75" PointY="7.5" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.Book" Width="1.5" PointX="3" PointY="6.25" Height="4.8648079427083344" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.BookInCategory" Width="1.5" PointX="5.25" PointY="7.75" Height="1.9802864583333344" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.BookPrice" Width="1.5" PointX="5.25" PointY="10.5" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.Category" Width="1.5" PointX="3" PointY="15.625" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.ContraintValue" Width="1.5" PointX="7.625" PointY="2.875" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.Customer" Width="1.5" PointX="3" PointY="19" Height="2.749492187499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.GiftCode" Width="1.5" PointX="7.75" PointY="10.875" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.Order" Width="1.5" PointX="3" PointY="0.75" Height="3.9033007812499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.OrderDetail" Width="1.5" PointX="5.25" PointY="4.625" Height="2.1725878906250031" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.PointTransaction" Width="1.5" PointX="3" PointY="22.5" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.Rating" Width="1.5" PointX="8.25" PointY="7.5" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="CocBookModel.Role" Width="1.5" PointX="1.5" PointY="12.375" Height="1.7879850260416674" IsExpanded="true" />
-        <AssociationConnector Association="CocBookModel.FK__Account__RoleID__1BFD2C07" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.6302085833333333" PointY="12.375" />
-          <ConnectorPoint PointX="2.6302085833333333" PointY="5.0015128063150982" />
-          <ConnectorPoint PointX="2.25" PointY="5.0015128063150982" />
-        </AssociationConnector>
-        <AssociationConnector Association="CocBookModel.FK__Customer__Userna__20C1E124" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.8749995" PointY="6.7494921875" />
-          <ConnectorPoint PointX="1.8749995" PointY="7.375" />
-          <ConnectorPoint PointX="2.5" PointY="7.375" />
-          <ConnectorPoint PointX="2.5" PointY="12.125" />
-          <ConnectorPoint PointX="2.54687525" PointY="12.125" />
-          <ConnectorPoint PointX="2.7135419166666668" PointY="12.125" />
-          <ConnectorPoint PointX="3.25" PointY="12.125" />
-          <ConnectorPoint PointX="3.25" PointY="15.374999999999998" />
-          <ConnectorPoint PointX="2.875" PointY="15.374999999999998" />
-          <ConnectorPoint PointX="2.875" PointY="20.374746093749998" />
-          <ConnectorPoint PointX="3" PointY="20.374746093749998" />
-        </AssociationConnector>
-        <AssociationConnector Association="CocBookModel.FK__Order__Username__300424B4" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="4.326650390625" />
-          <ConnectorPoint PointX="3" PointY="4.326650390625" />
-        </AssociationConnector>
-        <AssociationConnector Association="CocBookModel.FK__PointTran__Usern__2B3F6F97" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.28124775" PointY="6.7494921875" />
-          <ConnectorPoint PointX="1.28124775" PointY="7.25" />
-          <ConnectorPoint PointX="1.7916661666666667" PointY="7.2499999999999991" />
-          <ConnectorPoint PointX="1.9583328333333332" PointY="7.25" />
-          <ConnectorPoint PointX="2.5" PointY="7.25" />
-          <ConnectorPoint PointX="2.5" PointY="12.109375" />
-          <ConnectorPoint PointX="2.54687525" PointY="12.109375" />
-          <ConnectorPoint PointX="2.7135419166666668" PointY="12.109375" />
-          <ConnectorPoint PointX="3.5" PointY="12.109375" />
-          <ConnectorPoint PointX="3.5" PointY="15.124999999999998" />
-          <ConnectorPoint PointX="3.3333333333333335" PointY="15.124999999999998" />
-          <ConnectorPoint PointX="3.1666666666666665" PointY="15.124999999999998" />
-          <ConnectorPoint PointX="2.75" PointY="15.124999999999998" />
-          <ConnectorPoint PointX="2.75" PointY="23.490143229166666" />
-          <ConnectorPoint PointX="3" PointY="23.490143229166666" />
-        </AssociationConnector>
-        <AssociationConnector Association="CocBookModel.FK__Rating__Username__25869641" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="5.625758903157549" />
-          <ConnectorPoint PointX="2.54687525" PointY="5.6257589031575481" />
-          <ConnectorPoint PointX="2.7135419166666668" PointY="5.625758903157549" />
-          <ConnectorPoint PointX="5" PointY="5.625758903157549" />
-          <ConnectorPoint PointX="5" PointY="7.0475878906250031" />
-          <ConnectorPoint PointX="9" PointY="7.0475878906250031" />
-          <ConnectorPoint PointX="9" PointY="7.5" />
-        </AssociationConnector>
-        <AssociationConnector Association="CocBookModel.FK__Book__AuthorID__08EA5793" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="8.6824446614583337" />
-          <ConnectorPoint PointX="2.4166666666666665" PointY="8.6824446614583319" />
-          <ConnectorPoint PointX="2.7135419166666668" PointY="8.6824446614583337" />
-          <ConnectorPoint PointX="3" PointY="8.6824446614583337" />
-        </AssociationConnector>
-        <AssociationConnector Association="CocBookModel.FK__BookInCat__BookI__0DAF0CB0" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="8.7401432291666676" />
-          <ConnectorPoint PointX="5.25" PointY="8.7401432291666676" />
-        </AssociationConnector>
-        <AssociationConnector Association="CocBookModel.FK__BookPrice__BookI__1367E606" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="10.807403971354168" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="10.807403971354168" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="10.807403971354168" />
-          <ConnectorPoint PointX="5.25" PointY="10.807403971354168" />
-        </AssociationConnector>
-        <AssociationConnector Association="CocBookModel.FK__OrderDeta__BookI__35BCFE0A" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="6.5237939453125016" />
-          <ConnectorPoint PointX="4.916666666666667" PointY="6.5237939453125007" />
-          <ConnectorPoint PointX="5.083333333333333" PointY="6.5237939453125016" />
-          <ConnectorPoint PointX="5.25" PointY="6.5237939453125016" />
-        </AssociationConnector>
-        <AssociationConnector Association="CocBookModel.FK__Rating__BookID__267ABA7A" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="7.59375" />
-          <ConnectorPoint PointX="8.25" PointY="7.59375" />
-        </AssociationConnector>
-        <AssociationConnector Association="CocBookModel.FK__BookInCat__CateI__0EA330E9" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="15.626152846153847" />
-          <ConnectorPoint PointX="4.875" PointY="15.251152846153847" />
-          <ConnectorPoint PointX="4.875" PointY="9.2664668437500026" />
-          <ConnectorPoint PointX="5.25" PointY="9.2664668437500026" />
-        </AssociationConnector>
-        <AssociationConnector Association="CocBookModel.FK__OrderDeta__Order__34C8D9D1" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="2.6874995" />
-          <ConnectorPoint PointX="6" PointY="2.6874995" />
-          <ConnectorPoint PointX="6" PointY="4.625" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="CocBookModel.V_Book" Width="1.5" PointX="10.375" PointY="5.75" Height="4.4802050781250067" />
-        <EntityTypeShape EntityType="CocBookModel.SearchHistory" Width="1.5" PointX="10.375" PointY="11.75" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="CocBookModel.Album" Width="1.5" PointX="1.2491144674127523" PointY="8.36779860051712" />
-        <EntityTypeShape EntityType="CocBookModel.Music" Width="1.5" PointX="2.8162257628590921" PointY="15.001354924869423" />
-        <EntityTypeShape EntityType="CocBookModel.MusicAuthor" Width="1.5" PointX="8.5328322781868433" PointY="19.899274343577808" />
-        <EntityTypeShape EntityType="CocBookModel.MusicRating" Width="1.5" PointX="8.6169898438346522" PointY="4.8902054004791218" />
-        <EntityTypeShape EntityType="CocBookModel.Singer" Width="1.5" PointX="7.0730813327585729" PointY="27.076652077528021" />
+      <Diagram Name="CocBookModel" ZoomLevel="10">
+        <EntityTypeShape EntityType="CocBookModel.Account" Width="1.5" PointX="8.7257937531572729" PointY="8.6467315743894932" />
+        <EntityTypeShape EntityType="CocBookModel.Album" Width="1.5" PointX="6.9122757049800239" PointY="4.36796730960159" />
+        <EntityTypeShape EntityType="CocBookModel.Author" Width="1.5" PointX="2.6878164814262728" PointY="10.090931628873074" />
+        <EntityTypeShape EntityType="CocBookModel.Book" Width="1.5" PointX="7.7823750450193767" PointY="15.554210148544149" />
+        <EntityTypeShape EntityType="CocBookModel.BookInCategory" Width="1.5" PointX="10.261822403530507" PointY="27.680693460479702" />
+        <EntityTypeShape EntityType="CocBookModel.BookPrice" Width="1.5" PointX="10.050765634538031" PointY="30.525481655507107" />
+        <EntityTypeShape EntityType="CocBookModel.Category" Width="1.5" PointX="8.4075756819954037" PointY="9.8952159629646754" />
+        <EntityTypeShape EntityType="CocBookModel.Comment" Width="1.5" PointX="7.0151769942674678" PointY="12.535548171277879" />
+        <EntityTypeShape EntityType="CocBookModel.ContraintValue" Width="1.5" PointX="1.2720898004584433" PointY="4.5906553438821138" />
+        <EntityTypeShape EntityType="CocBookModel.Customer" Width="1.5" PointX="11.194219819826175" PointY="16.35925617085735" />
+        <EntityTypeShape EntityType="CocBookModel.GiftCode" Width="1.5" PointX="3.6748773398226486" PointY="25.051914465172178" />
+        <EntityTypeShape EntityType="CocBookModel.Music" Width="1.5" PointX="1.7843443144971245" PointY="26.203475711030642" />
+        <EntityTypeShape EntityType="CocBookModel.MusicAuthor" Width="1.5" PointX="8.6572756006649119" PointY="2.7759193492941181" />
+        <EntityTypeShape EntityType="CocBookModel.MusicCategory" Width="1.5" PointX="9.1310937186382226" PointY="14.92210321823233" />
+        <EntityTypeShape EntityType="CocBookModel.MusicRating" Width="1.5" PointX="7.3394665528738248" PointY="21.235303665155222" />
+        <EntityTypeShape EntityType="CocBookModel.Order" Width="1.5" PointX="3.9579358696741687" PointY="9.5920340612493611" />
+        <EntityTypeShape EntityType="CocBookModel.OrderDetail" Width="1.5" PointX="8.6360542423259723" PointY="14.668130926167654" />
+        <EntityTypeShape EntityType="CocBookModel.PointTransaction" Width="1.5" PointX="3.4873625037667164" PointY="31.374013483232826" />
+        <EntityTypeShape EntityType="CocBookModel.Rating" Width="1.5" PointX="1.2866650080711883" PointY="24.085889827500047" />
+        <EntityTypeShape EntityType="CocBookModel.Role" Width="1.5" PointX="2.5504245490536208" PointY="27.8753272722826" />
+        <EntityTypeShape EntityType="CocBookModel.SearchHistory" Width="1.5" PointX="6.18249173191492" PointY="8.3020785489594928" />
+        <EntityTypeShape EntityType="CocBookModel.Singer" Width="1.5" PointX="8.8038730084914132" PointY="14.933907083670565" />
+        <EntityTypeShape EntityType="CocBookModel.sysdiagram" Width="1.5" PointX="4.0908897519534868" PointY="9.13817394205284" />
+        <EntityTypeShape EntityType="CocBookModel.V_Book" Width="1.5" PointX="9.433046667572599" PointY="31.514155357849855" />
+        <EntityTypeShape EntityType="CocBookModel.V_Music" Width="1.5" PointX="1.6312200807180348" PointY="13.400395876448785" />
+        <AssociationConnector Association="CocBookModel.FK__Account__RoleID__45F365D3" />
+        <AssociationConnector Association="CocBookModel.FK__Customer__Userna__4E88ABD4" />
+        <AssociationConnector Association="CocBookModel.FK__Order__Username__52593CB8" />
+        <AssociationConnector Association="CocBookModel.FK__PointTran__Usern__5165187F" />
+        <AssociationConnector Association="CocBookModel.FK__Rating__Username__5070F446" />
+        <AssociationConnector Association="CocBookModel.FK_Album_Singer" />
+        <AssociationConnector Association="CocBookModel.FK_Music_Album" />
+        <AssociationConnector Association="CocBookModel.FK__Book__AuthorID__46E78A0C" />
+        <AssociationConnector Association="CocBookModel.FK__BookInCat__BookI__48CFD27E" />
+        <AssociationConnector Association="CocBookModel.FK__BookPrice__BookI__47DBAE45" />
+        <AssociationConnector Association="CocBookModel.FK__OrderDeta__BookI__5441852A" />
+        <AssociationConnector Association="CocBookModel.FK__Rating__BookID__4F7CD00D" />
+        <AssociationConnector Association="CocBookModel.FK__BookInCat__CateI__49C3F6B7" />
+        <AssociationConnector Association="CocBookModel.FK_Comment_Music" />
+        <AssociationConnector Association="CocBookModel.FK_Music_MusicAuthors" />
+        <AssociationConnector Association="CocBookModel.FK_Music_MusicCategory" />
+        <AssociationConnector Association="CocBookModel.FK_Music_Singer" />
+        <AssociationConnector Association="CocBookModel.FK_MusicRating_Music" />
+        <AssociationConnector Association="CocBookModel.FK_OrderDetail_Music" />
+        <AssociationConnector Association="CocBookModel.FK__OrderDeta__Order__5535A963" />
       </Diagram>
     </Diagrams>
   </Designer>
